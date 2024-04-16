@@ -13,11 +13,11 @@ class BirthDayTypeCalculator {
     int days = duration.days;
     int months = duration.months;
 
-    if (type == BirthDayType.nearestBirthDay) {
+    if (type.name == BirthDayType.nearestBirthDay.name) {
       age = calculateAgeForNearestBirthDay(age, duration, dob, currentDate);
-    } else if (type == BirthDayType.nextBirthDay) {
+    } else if (type.name == BirthDayType.nextBirthDay.name) {
       age = calculateAgeForNextBirthDay(age, duration, dob, currentDate);
-    } else if (type == BirthDayType.lastBirthDay) {
+    } else if (type.name == BirthDayType.lastBirthDay.name) {
       age = calculateAgeForLastBirthDay(age, duration, dob, currentDate);
     }
     age = ensureNonNegativeAge(age);
