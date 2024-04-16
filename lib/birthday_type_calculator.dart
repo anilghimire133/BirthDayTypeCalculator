@@ -3,21 +3,21 @@ import 'dart:core';
 
 import 'package:birthday_type_calculator/age_calculator.dart';
 
-enum BirthDayType { nearestBirthDay, nextBirthDay, lastBirthDay }
+enum BirthDayType { nearest, next, last}
+
 
 class BirthDayTypeCalculator {
-  int calculateAge(DateTime dob, BirthDayType type) {
+  int calculateAge(DateTime dob, String type) {
     DateTime currentDate = DateTime.now();
     DateDuration duration = AgeCalculator.age(dob, today: currentDate);
     int age = duration.years;
     int days = duration.days;
     int months = duration.months;
-
-    if (type.name == BirthDayType.nearestBirthDay.name) {
+    if (type == BirthDayType.nearest.name) {
       age = calculateAgeForNearestBirthDay(age, duration, dob, currentDate);
-    } else if (type.name == BirthDayType.nextBirthDay.name) {
+    } else if (type == BirthDayType.next.name) {
       age = calculateAgeForNextBirthDay(age, duration, dob, currentDate);
-    } else if (type.name == BirthDayType.lastBirthDay.name) {
+    } else if (type == BirthDayType.last.name) {
       age = calculateAgeForLastBirthDay(age, duration, dob, currentDate);
     }
     age = ensureNonNegativeAge(age);
