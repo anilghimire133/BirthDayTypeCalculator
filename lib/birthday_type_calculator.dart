@@ -60,7 +60,7 @@ class BirthDayTypeCalculator {
       int age, DateDuration duration, DateTime dob, DateTime currDate) {
     age = currDate.year - dob.year - 1;
 
-    if (duration.months == dob.month && duration.days > dob.day) {
+    if (duration.months == dob.month && duration.days >=dob.day) {
       age += 1;
     } else if (duration.months > dob.month) {
       age += 1;
