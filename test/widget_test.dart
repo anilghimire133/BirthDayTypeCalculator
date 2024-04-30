@@ -10,11 +10,11 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    DateTime birthday = DateTime(1986, 10, 7);
+
+    DateTime birthday = DateTime(2006, 12, 1);
     var Nearestage = BirthDayTypeCalculator().calculateAge(birthday, "NEAREST");
     print('Nearest Age $Nearestage');
     var lastAge = BirthDayTypeCalculator().calculateAge(birthday, "LAST");
-
     print('Last Age $lastAge');
     var next = BirthDayTypeCalculator().calculateAge(birthday, "Next");
     print('Next Age $lastAge');

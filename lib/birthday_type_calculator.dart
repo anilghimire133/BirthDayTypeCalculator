@@ -1,12 +1,16 @@
 library birth_day_type_calculator;
+
 import 'dart:core';
+
+import 'age_calculator.dart';
+
 // ignore: constant_identifier_names
 enum BirthDayType { NEAREST, NEXT, LAST }
+
 class BirthDayTypeCalculator {
   int calculateAge(DateTime dob, String type) {
     DateTime currentDate = DateTime.now();
-    
-    int age = currentDate.year - dob.year;
+    int age = 0;
     if (type == BirthDayType.NEAREST.name) {
       age = calculateAgeForNearestBirthDay(age, dob, currentDate);
     } else if (type == BirthDayType.NEXT.name) {
@@ -20,21 +24,27 @@ class BirthDayTypeCalculator {
 
   int calculateAgeForNearestBirthDay(
       int age, DateTime dob, DateTime currentDate) {
-    if (currentDate.month >= 6 && currentDate.year == dob.year) {
+    DateDuration duration = AgeCalculator.age(dob, today: currentDate);
+    age = duration.years;
+    print('NearestAge$age');
+    print('NearestAgeMonth${duration.months}');
+    print('NearestAgeDays${duration.days}');
+
+    if (duration.months >= 6 && currentDate.year == dob.year) {
       age += 1;
-    } else if (currentDate.month >= 6) {
+    } else if (duration.months >= 6) {
       age += 1;
-    } else if (currentDate.month < 6 &&
-        currentDate.month != 5 &&
+    } else if (duration.months < 6 &&
+        duration.months != 5 &&
         currentDate.year == dob.year) {
       // Do nothing, age remains the same
-    } else if (currentDate.month == 5 && currentDate.day >= 30) {
+    } else if (duration.months == 5 && duration.days > 30) {
       age += 1;
-    } else if (currentDate.month == 5 && currentDate.day <= 30) {
+    } else if (duration.months == 5 && duration.days <= 30) {
       // Do nothing, age remains the same
-    } else if (currentDate.month == dob.month &&
+    } else if (duration.months == dob.month &&
         currentDate.year == dob.year &&
-        currentDate.day > dob.day) {
+        duration.days > dob.day) {
       age += 1;
     }
     return age;
