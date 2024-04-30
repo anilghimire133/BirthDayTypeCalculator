@@ -29,7 +29,6 @@ class BirthDayTypeCalculator {
     print('NearestAge$age');
     print('NearestAgeMonth${duration.months}');
     print('NearestAgeDays${duration.days}');
-
     if (duration.months >= 6 && currentDate.year == dob.year) {
       age += 1;
     } else if (duration.months >= 6) {
