@@ -49,9 +49,38 @@ class BirthDayTypeCalculator {
     return age;
   }
 
+  // int calculateAgeForNextBirthDay(int age, DateTime dob, DateTime currDate) {
+  //   DateDuration duration = AgeCalculator.age(dob, today: currDate);
+  //   if (duration.months != dob.month || duration.days != dob.day) {
+  //     age += 1;
+  //   }
+  //   return age;
+  // }
+
   int calculateAgeForNextBirthDay(int age, DateTime dob, DateTime currentDate) {
-    if (currentDate.month != dob.month || currentDate.day != dob.day) {
-      age += 1;
+    age = currentDate.year - dob.year - age;
+
+    currentDate = currentDate.subtract(Duration(days: dob.day - 1));
+    currentDate = currentDate.subtract(Duration(days: dob.month * 30));
+
+    if (currentDate.month >= 6 && currentDate.year == dob.year) {
+      age++;
+    } else if (currentDate.month < 6 &&
+        currentDate.month != 5 &&
+        currentDate.year == dob.year) {
+      // Age remains the same
+    } else if (currentDate.month == 5 &&
+        currentDate.year == dob.year &&
+        currentDate.day >= 31) {
+      age++;
+    } else if (currentDate.month == 5 &&
+        currentDate.year == dob.year &&
+        currentDate.day <= 30) {
+      // Age remains the same
+    } else if (currentDate.month == dob.month &&
+        currentDate.year == dob.year &&
+        currentDate.day > dob.day) {
+      age++;
     }
 
     return age;
