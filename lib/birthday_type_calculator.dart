@@ -26,9 +26,6 @@ class BirthDayTypeCalculator {
       int age, DateTime dob, DateTime currentDate) {
     DateDuration duration = AgeCalculator.age(dob, today: currentDate);
     age = duration.years;
-    print('NearestAge$age');
-    print('NearestAgeMonth${duration.months}');
-    print('NearestAgeDays${duration.days}');
     if (duration.months >= 6 && currentDate.year == dob.year) {
       age += 1;
     } else if (duration.months >= 6) {
