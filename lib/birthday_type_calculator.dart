@@ -73,15 +73,11 @@ class BirthDayTypeCalculator {
   }
 
   Map<String, int> getBirthDayDetails(DateTime dob) {
-    DateTime now = DateTime.now();
-    int year = now.year;
-
-    // If the birthday has already passed this year, move to next year
-    if (dob.month < now.month ||
-        (dob.month == now.month && dob.day < now.day)) {
-      year += 1;
-    }
-
-    return {'day': dob.day, 'month': dob.month, 'year': year};
+    DateDuration duration = AgeCalculator.age(dob);
+    return {
+      'day': duration.days,
+      'month': duration.months,
+      'year': duration.years
+    };
   }
 }
