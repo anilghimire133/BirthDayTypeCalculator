@@ -55,25 +55,6 @@ class BirthDayTypeCalculator {
 
     return age;
   }
-  // int calculateAgeForNextBirthDay(int age, DateTime dob, DateTime currentDate) {
-  //   DateDuration duration = AgeCalculator.age(dob, today: currentDate);
-  //   age = duration.years;
-  //   if (currentDate.month == dob.month && currentDate.day == dob.day) {
-  //     age ++;
-  //   }
-  //     if (duration.months >= 6 || currentDate.year == dob.year) {
-  //     age++;
-  //   }
-
-  //   // if (duration.months >= 6 || currentDate.year == dob.year) {
-  //   //   age ++;
-  //   // } else if (currentDate.month == 5 &&
-  //   //     currentDate.year == dob.year &&
-  //   //     currentDate.day >= 31) {
-  //   //   age++;
-  //   // }
-  //   return age;
-  // }
 
   int calculateAgeForLastBirthDay(int age, DateTime dob, DateTime currentDate) {
     age = currentDate.year - dob.year - 1;
@@ -89,5 +70,18 @@ class BirthDayTypeCalculator {
 
   int ensureNonNegativeAge(int age) {
     return age < 0 ? 0 : age;
+  }
+
+  Map<String, int> getBirthDayDetails(DateTime dob) {
+    DateTime now = DateTime.now();
+    int year = now.year;
+
+    // If the birthday has already passed this year, move to next year
+    if (dob.month < now.month ||
+        (dob.month == now.month && dob.day < now.day)) {
+      year += 1;
+    }
+
+    return {'day': dob.day, 'month': dob.month, 'year': year};
   }
 }
