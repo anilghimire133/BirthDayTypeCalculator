@@ -72,14 +72,14 @@ class BirthDayTypeCalculator {
     return age < 0 ? 0 : age;
   }
 
-  Map<String, int> getBirthDayDetails(DateTime dob) {
-    DateDuration duration = AgeCalculator.age(dob);
-    return {
-      'day': duration.days,
-      'month': duration.months,
-      'year': duration.years
-    };
-  }
+  // Map<String, int> getBirthDayDetails(DateTime dob) {
+  //   DateDuration duration = AgeCalculator.age(dob);
+  //   return {
+  //     'day': duration.days,
+  //     'month': duration.months,
+  //     'year': duration.years
+  //   };
+  // }
 
  int calculateAgeInDays(DateTime dateTime) {
     int daysDifference =
