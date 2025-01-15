@@ -114,4 +114,9 @@ class AgeCalculator {
         : tempDate;
     return dateDifference(fromDate: endDate, toDate: nextBirthdayDate);
   }
+
+  static int daysBetween(
+      {required DateTime fromDate, required DateTime toDate}) {
+    return toDate.difference(fromDate).inDays;
+  }
 }

@@ -80,4 +80,11 @@ class BirthDayTypeCalculator {
       'year': duration.years
     };
   }
+
+ int calculateAgeInDays(DateTime dateTime) {
+    int daysDifference =
+        AgeCalculator.daysBetween(fromDate: dateTime, toDate: DateTime.now());
+    return daysDifference;
+  }
+
 }
